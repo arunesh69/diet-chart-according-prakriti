@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ayurvedic Diet Recommender</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        select, input[type="button"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        input[type="button"] {
+            background-color: #4caf50;
+            color: white;
+            cursor: pointer;
+        }
+        input[type="button"]:hover {
+            background-color: #45a049;
+        }
+        #dietRecommendation {
+            margin-top: 20px;
+        }
+        #dietRecommendation h2 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        #dietRecommendation p {
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Ayurvedic Diet Recommender</h1>
+        <form id="dietForm">
+            <label for="prakriti">Select Your Prakriti:</label>
+            <select id="prakriti" name="prakriti">
+                <option value="Vata">Vata</option>
+                <option value="Pitta">Pitta</option>
+                <option value="Kapha">Kapha</option>
+            </select>
+            
+            <label for="ritu">Select the Ritu (Season):</label>
+            <select id="ritu" name="ritu">
+                <option value="Vasanta (Spring)">Vasanta (Spring)</option>
+                <option value="Grishma (Summer)">Grishma (Summer)</option>
+                <option value="Varsha (Monsoon)">Varsha (Monsoon)</option>
+                <option value="Sharad (Autumn)">Sharad (Autumn)</option>
+                <option value="Hemanta (Winter)">Hemanta (Winter)</option>
+                <option value="Shishira (Late Winter)">Shishira (Late Winter)</option>
+            </select>
+            
+            <input type="button" value="Get Diet Recommendation" onclick="getDiet()">
+        </form>
+        
+        <div id="dietRecommendation"></div>
+    </div>
+    
+    <script>
+        function getDiet() {
+            var prakriti = document.getElementById("prakriti").value;
+            var ritu = document.getElementById("ritu").value;
+            var dietRecommendation = document.getElementById("dietRecommendation");
+            
+            var dietMap = {
+                "Vata": {
+                    "Vasanta (Spring)": "Warm, moist foods like cooked grains, soups, and steamed vegetables.",
+                    "Grishma (Summer)": "Cooling foods like cucumber, mint, and coconut.",
+                    "Varsha (Monsoon)": "Light and easily digestible foods like warm soups and stews.",
+                    "Sharad (Autumn)": "Nourishing foods like cooked grains, root vegetables, and herbal teas.",
+                    "Hemanta (Winter)": "Warming foods like cooked grains, hearty soups, and spices like ginger and cinnamon.",
+                    "Shishira (Late Winter)": "Balancing foods like cooked grains, root vegetables, and cooked fruits."
+                },
+                "Pitta": {
+                    "Vasanta (Spring)": "Cooling foods like cucumber, cilantro, and coconut.",
+                    "Grishma (Summer)": "Cooling foods like cucumber, mint, and coconut.",
+                    "Varsha (Monsoon)": "Light and easily digestible foods like cooked grains, lentils, and soups.",
+                    "Sharad (Autumn)": "Balancing foods like sweet fruits, cooked grains, and ghee.",
+                    "Hemanta (Winter)": "Warming foods like cooked grains, root vegetables, and spices like cinnamon and cardamom.",
+                    "Shishira (Late Winter)": "Balancing foods like cooked grains, root vegetables, and cooked fruits."
+                },
+                "Kapha": {
+                    "Vasanta (Spring)": "Light and dry foods like salads, steamed vegetables, and spicy herbs.",
+                    "Grishma (Summer)": "Light and dry foods like salads, steamed vegetables, and spicy herbs.",
+                    "Varsha (Monsoon)": "Warm and slightly spicy foods like soups, stews, and cooked grains.",
+                    "Sharad (Autumn)": "Light and dry foods like salads, cooked grains, and spicy herbs.",
+                    "Hemanta (Winter)": "Warming foods like cooked grains, root vegetables, and spices like ginger and black pepper.",
+                    "Shishira (Late Winter)": "Warming foods like cooked grains, root vegetables, and spices like ginger and black pepper."
+                }
+            };
+            
+            var recommendation = dietMap[prakriti][ritu];
+            dietRecommendation.innerHTML = "<h2>Diet Recommendation for " + prakriti + " Prakriti in " + ritu + ":</h2><p>" + recommendation + "</p>";
+            
+        }
+    </script>
+</body>
+</html>
